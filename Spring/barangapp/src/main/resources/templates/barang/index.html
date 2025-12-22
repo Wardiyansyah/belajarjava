@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Barang</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Daftar Barang</h1>
+    <a href="/barang/create">Tambah Barang</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama Barang</th>
+                <th>Deskripsi</th>
+                <th>Harga</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="barang : ${listBarang}">
+                <td th:text="${barang.id}"></td>
+                <td th:text="${barang.nama}"></td>
+                <td th:text="${barang.deskripsi}"></td>
+                <td th:text="${barang.harga}"></td>
+                <td>
+                    <a th:href="@{/barang/edit/{id}(id=${barang.id})}">Edit</a>
+                    <a th:href="@{/barang/delete/{id}(id=${barang.id})}">Hapus</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
